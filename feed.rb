@@ -6,7 +6,7 @@ require './logger'
 
 class Feed
   
-  include Logger
+  include Readme::Logger
 
   attr_accessor :url, :params, :items
   

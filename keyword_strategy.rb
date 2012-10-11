@@ -1,7 +1,7 @@
 class KeywordStrategy
   
   require './logger'
-  include Logger
+  include Readme::Logger
   
   @@sample_frequency = 5
   @@word_frequency = 2
@@ -19,6 +19,14 @@ class KeywordStrategy
   # Group words
   def self.word_groups(keywords)
     keywords.flatten.compact.group_by{|word| word }
+  end
+  
+  def self.breaking_news(keywords)
+    keywords.flatten.compact.include?("breaking")
+  end
+  
+  def self.any(keywords)
+    !keywords.blank?
   end
   
   # def intersection

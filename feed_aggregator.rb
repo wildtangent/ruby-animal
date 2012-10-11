@@ -2,8 +2,9 @@ class FeedAggregator
   
   @@feed_source = :yahoo
   
+  require './feed'
   require './logger'
-  include Logger
+  include Readme::Logger
   
   attr_accessor :feed, :url, :options, :visited_links
   
