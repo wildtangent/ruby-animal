@@ -16,7 +16,7 @@ class MoviePlayer
   def initialize(movie_url, options={})
     @movie_url = movie_url
     @options = options
-    @image_processor = QueuedImageProcessor.new
+    @image_processor = ImageProcessor.new
 
     @show_window = true
     @window_name = "movie"
