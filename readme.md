@@ -32,11 +32,11 @@ The source code is broken down into a number of discreet functions as follows
 Used to execute the main application. Run using `ruby ./readme.rb`
 
 ###movie_player.rb
-Movie player connects to a given video stream using OpenCV
-It displays a frame using OpenCV GUI Window library, via a helper class called `WindowManager`
-It captures a frame every n ticks and passes the frame data to an `ImageProcessor` class via the method "process"
+Movie player connects to a given video stream using OpenCV  
+It displays a frame using OpenCV GUI Window library, via a helper class called `WindowManager`  
+It captures a frame every n ticks and passes the frame data to an `ImageProcessor` class via the method "process"  
 It aborts the running application if any key is pressed while the GUI window has focus.
-
+  
 ###image_processor.rb
 The Image processor class takes the frame passed in and a tick value, and passes the frame to any additional processing which is required to be done
 In this implementation, the image is passed to the `Ocr` class which performs OCR on the frame and provides an interface to receive the processed text
