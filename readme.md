@@ -46,6 +46,7 @@ The OCR class takes a String reference to a file or an `OpenCV::IplImage` object
 It performs some image processing to remove colour and add a threshold filter to improve character recognition (this could definitely be improved)
 It saves the processed image to a temporary file and then runs Tesseract command line via the "tesseract" gem passing the filename
   - This could be improved by using a different Tesseract gem which doesn't invoke the command line, so it is not necessary to save the file to disk first
+
 It appends the text to a "store" object which is currently a Memcache store (this allows it to be persisted between instances, for example if we want to use a message queue to process the strings. Not sure if this is really a good idea or not, it was just an experiment.
 It stores the raw text and "cleaned" up  text to an instance variable and return the clean text to the caller
 
