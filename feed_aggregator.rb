@@ -51,7 +51,7 @@ class FeedAggregator
       item = @items.first
       unless @visited_links.include?(item.link)
         #Launchy.open(link)
-        @notifier = Notifier::PusherNotifier.new(item.title, item.link)
+        @notifier = Notifier::PusherNotifier.new({title: item.title, link: item.link})
         @notifier.notify!
         @visited_links << item.link
       end

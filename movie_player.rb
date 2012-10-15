@@ -16,12 +16,13 @@ class MoviePlayer
   def initialize(movie_url, options={})
     @movie_url = movie_url
     @options = options
-    @image_processor = ImageProcessor.new
-
-    @show_window = true
+    @image_processor = @options[:image_processor] || ImageProcessor.new
+    
+    @save_frames = false # Set to true if you want to capture some frames from the video feed e.g. for character recognition training
+    
+    @show_window = true # Set to false if you don't want to create a GUI window (experiementatl)
     @window_name = "movie"
     @windows = WindowManager.new
-
   end
 
   # Run capture
@@ -30,7 +31,14 @@ class MoviePlayer
     capture!  
     tick = 0
     loop do
-      image = @capture.query      
+      
+      image = @capture.query
+        
+      # In case you want to capture some frames from the video feed
+      if @save_frames && tick % 25 == 0 
+        image.save_image("capture/frame_#{tick}.tif")
+      end
+      
       Thread.new { window.show(image) }
       @image_processor.process(image, tick)
       tick += 1
