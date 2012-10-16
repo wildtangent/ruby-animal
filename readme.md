@@ -31,7 +31,15 @@ To daemonise the script, start using
 ./bin/readme -d -P tmp/readme.pid
 ```
 
-To terminate the 
+You can also use the helper scripts in bash
+
+```
+./bin/start
+./bin/stop
+```
+
+To start and stop the processes by PID
+
 
 ##Source Code Description
 
