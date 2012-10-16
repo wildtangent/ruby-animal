@@ -24,6 +24,15 @@ To use the queued image processor (required for Sidekiq version) you can pass in
 mp = MoviePlayer.new(movie_url, image_processor: QueuedImageProcessor.new)
 ```
 
+# Demonising the process
+To daemonise the script, start using 
+
+```
+./bin/readme -d -P tmp/readme.pid
+```
+
+To terminate the 
+
 ##Source Code Description
 
 The source code is broken down into a number of discreet functions as follows

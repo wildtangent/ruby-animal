@@ -6,3 +6,4 @@ gem 'tesseract', git: "https://github.com/scottdavis/ruby-tesseract.git"
 gem 'launchy'
 gem 'redis'
 gem 'sidekiq'
+gem 'dante'
