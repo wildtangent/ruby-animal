@@ -4,17 +4,43 @@ require 'rubygems'
 require 'dante'
 require File.expand_path("../../movie_player.rb", __FILE__)
 
-Dante.run('readme') do |opts|
-  # opts: host, pid_path, port, daemonize, user, group
+runner = Dante::Runner.new('myapp', :port => 8080)
+runner.description = "Start the OCR reader app"
+
+runner.with_options do |opts|
+  opts.on("-m", "--movie_url MOVIE_URL", String, "http://media4.lsops.net/live/aljazeer2_en_ultrahigh.sdp/playlist.m3u8") do |movie_url|
+    options[:movie_url] = movie_url
+  end  
+  
+  opts.on("-f","--feed-source FEED_SOURCE", String, :yahoo) do |feed_source|
+    options[:feed_source] = feed_source
+  end
+  
+  opts.on("-i", "--image-processor IMAGE_PROCESSOR", String, "ImageProcessor") do |image_processor|
+    options[:image_processor] = image_processor
+  end
+end
+
+runner.execute do |opts|
+  
+  # raise opts.inspect
   
   # Set RSS feed source to :yahoo or :google
-  FeedAggregator.feed_source = :yahoo
+  FeedAggregator.feed_source = opts[:feed_source] ||= :yahoo
 
   # HQ video stream
-  movie_url = "http://media4.lsops.net/live/aljazeer2_en_ultrahigh.sdp/playlist.m3u8"
-
+  # e.g. http://media4.lsops.net/live/aljazeer2_en_ultrahigh.sdp/playlist.m3u8
+  movie_url = opts[:movie_url] 
+  
+  # Which image processor to use
+  # Available processors are ImageProcessor or QueuedImageProcessor
+  image_processor = opts[:image_processor].constantize.new || ImageProcessor.new
+  
   # No options
-  options = {}
+  options = {
+    movie_url: movie_url,
+    image_processor: image_processor
+  }
 
   # Different streaming formats
   # movie_url = "http://media11.lsops.net/live/bbcnews_en_high.sdp/playlist.m3u8"

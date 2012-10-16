@@ -9,7 +9,7 @@ class FeedAggregator
   attr_accessor :feed, :url, :options, :visited_links
   
   def initialize(url=nil, options={})
-    case @@feed_source 
+    case @@feed_source.to_sym
     when :google
       set_google_feed!(url, options)
     when :yahoo

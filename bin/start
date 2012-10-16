@@ -1,2 +1,2 @@
 #!/bin/bash
-./bin/readme -d -P tmp/readme.pid
+./bin/readme -d -P tmp/readme.pid --movie_url=http://media4.lsops.net/live/aljazeer2_en_ultrahigh.sdp/playlist.m3u8 -f google -i QueuedImageProcessor
