@@ -28,11 +28,19 @@ mp = MoviePlayer.new(movie_url, image_processor: QueuedImageProcessor.new)
 To daemonise the script, start using 
 
 ```
-./bin/readme -d -P tmp/readme.pid
+./bin/readme -d -P tmp/readme.pid -m http://originserver.com/mystream.m3u8 -i ImageProcessor -f google
 ```
 
-You can also use the helper scripts in bash
+Acceptable options are:
+```
+-f --feed_source= google|yahoo
+-m --movie_url= RTMP,HLS,RTSP URL as supported by OpenCV
+-i --image_processor QueuedImageProcessor|ImageProcessor|OtherImageProcessorClass
+-P   pidfile
+-d   Daemonize
+```
 
+You can also use the helper scripts in bash:
 ```
 ./bin/start
 ./bin/stop
