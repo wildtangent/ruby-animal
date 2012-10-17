@@ -6,7 +6,8 @@ require './movie_player'
 FeedAggregator.feed_source = :yahoo
 
 # HQ video stream
-movie_url = "http://media4.lsops.net/live/aljazeer2_en_ultrahigh.sdp/playlist.m3u8"
+# movie_url = "http://media4.lsops.net/live/aljazeer2_en_ultrahigh.sdp/playlist.m3u8"
+movie_url = ARGV[0]
 
 # No options
 options = {}

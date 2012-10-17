@@ -9,4 +9,8 @@ gem 'nokogiri'
 gem 'pusher'
 gem 'redis'
 gem 'sidekiq'
+<<<<<<< HEAD
 gem 'dalli'
+=======
+gem 'dante'
+>>>>>>> 57987864dc8167890b81962b7197582c74548939
