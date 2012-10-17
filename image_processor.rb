@@ -26,7 +26,6 @@ class ImageProcessor
     end
     
     if get_articles?(tick)
-      puts @text.join(", ")
       case @strategy
       when :most_frequent
         keywords = KeywordStrategy.most_frequent(@text)
@@ -36,11 +35,11 @@ class ImageProcessor
         end
       when :breaking_news
         #keywords = KeywordStrategy.breaking_news(@text)
-        keywords = KeywordStrategy.any(@text)
+        keywords = KeywordStrategy.breaking_news(@text)
         if keywords == true
           notifier = Notifier::PusherNotifier.new({
             message: "Breaking news on #{@text}",
-            url: "http://dev.livestation.com/en/aljazeera-english",
+            url: "http://www.livestation.com/en/aljazeera-english",
             timeout: 10000
           }, "breaking_news")
           notifier.notify!

@@ -28,8 +28,6 @@ class Ocr
 
   # Perform OCR on the image
   def process!(image)
-    puts "procssing image"
-    
     case image
     when String
       image = OpenCV::IplImage.load(image)
@@ -52,7 +50,6 @@ class Ocr
     @store.set("text", t)
     
     return t
-    
   end
   
   # Try to clean up the text 
