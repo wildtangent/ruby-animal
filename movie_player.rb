@@ -43,8 +43,11 @@ class MoviePlayer
         if @save_frames && tick % 25 == 0 
           image.save_image("capture/frame_#{tick}.tif")
         end
-      
-        Thread.new { window.show(image) }
+
+        if @show_window
+          Thread.new {window.show(image)}
+        end
+
         @image_processor.process(image, tick)
         tick += 1
         break if GUI::wait_key(100)
