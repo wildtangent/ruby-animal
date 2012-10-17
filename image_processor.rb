@@ -39,8 +39,7 @@ class ImageProcessor
         keywords = KeywordStrategy.any(@text)
         if keywords == true
           notifier = Notifier::PusherNotifier.new({
-            title: "Breaking News", 
-            message: "I think something good is going on: #{@text}",
+            message: "Breaking news on #{@text}",
             url: "http://dev.livestation.com/en/aljazeera-english",
             timeout: 10000
           }, "breaking_news")
@@ -67,6 +66,5 @@ class ImageProcessor
   def get_articles?(tick)
     tick % @query_frequency == 0
   end
-  
-  
+   
 end
