@@ -1,2 +1,5 @@
 #!/bin/bash
-./bin/readme -d -P tmp/readme.pid --movie_url=http://media4.lsops.net/live/aljazeer2_en_ultrahigh.sdp/playlist.m3u8 -f google -i QueuedImageProcessor
+bundle exec ./bin/readme -P tmp/readme.pid --movie_url=http://media4.lsops.net/live/aljazeer2_en_ultrahigh.sdp/playlist.m3u8 > /dev/null 2>&1
+
+#-f google -i QueuedImageProcessor
+

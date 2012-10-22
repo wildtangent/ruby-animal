@@ -1,6 +1,8 @@
+require 'pony'
+
 class Mailer
   
-  def send_error_mail(e)
+  def self.send_error_mail(e)
     Pony.mail({
       :to => 'developers@livestation.com',
       :via => :smtp,

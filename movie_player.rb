@@ -35,6 +35,8 @@ class MoviePlayer
     capture!  
     tick = 0
     
+    puts "Service started..."
+    
     loop do
       begin  
         image = @capture.query
@@ -51,8 +53,6 @@ class MoviePlayer
         @image_processor.process(image, tick)
         tick += 1
         break if GUI::wait_key(100)
-      rescue Exception => e
-        Mailer.send_error_mail(e)
       end
     end
   end
