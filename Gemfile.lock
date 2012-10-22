@@ -1,12 +1,12 @@
 GIT
-  remote: https://github.com/ruby-opencv/ruby-opencv.git
+  remote: https://github.com/livestation/ruby-opencv.git
   revision: 42cd2bd9d14e8ced48554d4338171d1645141788
   specs:
     opencv (0.0.6.20120501011158)
 
 GIT
-  remote: https://github.com/scottdavis/ruby-tesseract.git
-  revision: c8658132f00f8562017b8c7c8312f17045e94e63
+  remote: https://github.com/livestation/ruby-tesseract.git
+  revision: 25707e8945dc658c6eaab18afc5aabee6556458b
   specs:
     tesseract (0.1.1)
 
