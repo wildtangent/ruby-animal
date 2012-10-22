@@ -4,7 +4,7 @@ require 'rubygems'
 require 'dante'
 require File.expand_path("../../movie_player.rb", __FILE__)
 
-runner = Dante::Runner.new('myapp', :port => 8080)
+runner = Dante::Runner.new('Ruby Animal OCR', :port => 8080)
 runner.description = "Start the OCR reader app"
 
 runner.with_options do |opts|
@@ -34,8 +34,12 @@ runner.execute do |opts|
   
   # Which image processor to use
   # Available processors are ImageProcessor or QueuedImageProcessor
-  image_processor = opts[:image_processor].constantize.new || ImageProcessor.new
-  
+  begin
+    image_processor = opts[:image_processor].constantize.new || ImageProcessor.new
+  rescue  
+    image_processor = ImageProcessor.new
+  end
+
   # No options
   options = {
     movie_url: movie_url,

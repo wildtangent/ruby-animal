@@ -1,2 +1,6 @@
 .DS_Store
 tmp/*.pid
+tmp/*.tif
+tmp/*.txt
+tmp/frame*
+log/*.log
