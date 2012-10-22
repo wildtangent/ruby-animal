@@ -17,6 +17,7 @@ class Mailer
         The OCR service is down!
         
         #{e.inspect}
+        #{e.backtrace}
       )
     })
   end
