@@ -12,9 +12,9 @@ class ImageProcessor
     @text = []
     @process_frequency = options[:process_frequency] || 16
     @query_frequency = options[:query_frequency] || 32
-    @feed_aggregator = FeedAggregator.new
-    #@strategy = :most_frequent
-    @strategy = :breaking_news
+    @url = options[:url]
+    @feed_aggregator = FeedAggregator.new(nil, options)
+    @strategy = options[:strategy] || :breaking_news
   end
   
   def process(image, tick)
@@ -33,13 +33,22 @@ class ImageProcessor
           @feed_aggregator.show(keywords)
           reset_keywords!
         end
+      when :any
+        keywords = KeywordStrategy.any(@text)
+        if keywords == true
+          notifier = Notifier::PusherNotifier.new({
+            message: "Breaking news alert",
+            url: @url,
+            timeout: 10000
+          }, "breaking_news")
+          notifier.notify!
+        end
       when :breaking_news
-        #keywords = KeywordStrategy.breaking_news(@text)
         keywords = KeywordStrategy.breaking_news(@text)
         if keywords == true
           notifier = Notifier::PusherNotifier.new({
-            message: "Breaking news on #{@text}",
-            url: "http://www.livestation.com/en/aljazeera-english",
+            message: "Breaking news alert",
+            url: @url,
             timeout: 10000
           }, "breaking_news")
           notifier.notify!

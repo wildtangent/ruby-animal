@@ -1,0 +1,2 @@
+---
+BUNDLE_BUILD__RUBY-OPENCV: --with-opencv-dir=/opt/local

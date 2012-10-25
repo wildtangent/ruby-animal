@@ -17,10 +17,8 @@ class MoviePlayer
   def initialize(movie_url, options={})
     @movie_url = movie_url
     @options = options
-    @image_processor = @options[:image_processor] || ImageProcessor.new
-    
+    @image_processor = @options[:image_processor] || ImageProcessor.new(options)    
     @save_frames = false # Set to true if you want to capture some frames from the video feed e.g. for character recognition training
-    
     @show_window = false # Set to false if you don't want to create a GUI window (experiementatl)
     @window_name = "movie"
     @windows = WindowManager.new

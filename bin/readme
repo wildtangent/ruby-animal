@@ -19,11 +19,19 @@ runner.with_options do |opts|
   opts.on("-i", "--image-processor IMAGE_PROCESSOR", String, "ImageProcessor") do |image_processor|
     options[:image_processor] = image_processor
   end
+  
+  opts.on("-l", "--url URL", String, "/en/aljazeera-english?breakingNews=true") do |url|
+    options[:url] = url
+  end
+  
+  # Set this to choose which Keyword Strategy to use
+  # options are breaking_news, most_frequent, all
+  opts.on("-s", "--strategy STRATEGY", String, "breaking_news") do |strategy|
+    options[:strategy] = strategy
+  end
 end
 
 runner.execute do |opts|
-  
-  # raise opts.inspect
   
   # Set RSS feed source to :yahoo or :google
   FeedAggregator.feed_source = opts[:feed_source] ||= :yahoo
@@ -31,19 +39,23 @@ runner.execute do |opts|
   # HQ video stream
   # e.g. http://media4.lsops.net/live/aljazeer2_en_ultrahigh.sdp/playlist.m3u8
   movie_url = opts[:movie_url] 
+  url = opts[:url] ||= "http://www.livestation.com"
+  strategy = opts[:strategy] || "breaking_news"
   
   # Which image processor to use
   # Available processors are ImageProcessor or QueuedImageProcessor
   begin
-    image_processor = opts[:image_processor].constantize.new || ImageProcessor.new
+    image_processor = opts[:image_processor].constantize.new({url: url, strategy: strategy}) || ImageProcessor.new({url: url, strategy: strategy})
   rescue  
-    image_processor = ImageProcessor.new
+    image_processor = ImageProcessor.new({url: url, strategy: strategy})
   end
 
   # No options
   options = {
     movie_url: movie_url,
-    image_processor: image_processor
+    image_processor: image_processor,
+    url: url,
+    strategy: strategy
   }
 
   # Different streaming formats
