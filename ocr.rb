@@ -23,7 +23,7 @@ class Ocr
     @show_window = true
     @window_name = "ocr"
     @windows = WindowManager.new
-    #@windows.create(@window_name, [0,320], @show_window)
+    @windows.create(@window_name, [0,320], @show_window)
   end
 
   # Perform OCR on the image
