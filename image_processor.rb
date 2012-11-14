@@ -28,13 +28,15 @@ class ImageProcessor
       # Other stuff... (should be able to yield a block here?)
     end
     
+    log(@text)
+    
     if get_articles?(tick)
       case @strategy
       when :most_frequent
         keywords = KeywordStrategy.most_frequent(@text)
         if keywords.length >= 2
           @feed_aggregator.show(keywords)
-          notify_email(text, image)
+          notify_email!(text, image)
           reset_keywords!
         end
       when :any
@@ -59,7 +61,7 @@ class ImageProcessor
             url: @url,
             timeout: 10000
           }, "breaking_news")
-          notify_email(text, image)
+          notify_email!(text, image)
           notifier.notify!
           reset_keywords!
         end
