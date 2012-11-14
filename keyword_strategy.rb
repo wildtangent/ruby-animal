@@ -22,7 +22,7 @@ class KeywordStrategy
   end
   
   def self.breaking_news(keywords)
-    keywords.flatten.compact.include?("obama")
+    keywords.flatten.compact.include?("breaking")
   end
   
   def self.any(keywords)
